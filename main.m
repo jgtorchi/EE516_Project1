@@ -5,6 +5,7 @@ close all
 %%
 Z = getNumbers('mnist_train0.jpg');
 Area = arrayfun(@(a) getRegionProps(a.nums,'Area'),Z);
+FilledAreas = arrayfun(@(a) getRegionProps(a.nums,'FilledArea'),Z);
 perimeters = arrayfun(@(a) getRegionProps(a.nums,'Perimeter'),Z);
 Eccentricity = arrayfun(@(a) getRegionProps(a.nums,'Eccentricity'),Z);
 Orientation = arrayfun(@(a) getRegionProps(a.nums,'Orientation'),Z);
@@ -13,6 +14,7 @@ MinorAxis = arrayfun(@(a) getRegionProps(a.nums,'MinorAxisLength'),Z);
 %%
 O = getNumbers('mnist_train1.jpg');
 OnesAreas = arrayfun(@(a) getRegionProps(a.nums,'Area'),O);
+OnesFilledAreas = arrayfun(@(a) getRegionProps(a.nums,'FilledArea'),O);
 OnesPerimeters = arrayfun(@(a) getRegionProps(a.nums,'Perimeter'),O);
 OnesEccentricity = arrayfun(@(a) getRegionProps(a.nums,'Eccentricity'),O);
 OnesCircularity = (4*pi*OnesAreas)./(OnesPerimeters.^2);
@@ -20,6 +22,7 @@ OnesMinorAxis = arrayfun(@(a) getRegionProps(a.nums,'MinorAxisLength'),O);
 %%
 T = getNumbers('mnist_train2.jpg');
 TwosAreas = arrayfun(@(a) getRegionProps(a.nums,'Area'),T);
+TwosFilledAreas = arrayfun(@(a) getRegionProps(a.nums,'FilledArea'),T);
 TwosPerimeters = arrayfun(@(a) getRegionProps(a.nums,'Perimeter'),T);
 TwosOrientation = arrayfun(@(a) getRegionProps(a.nums,'Orientation'),T);
 TwosCircularity = (4*pi*TwosAreas)./(TwosPerimeters.^2);
@@ -62,10 +65,10 @@ xlabel('Area')
 ylabel('MinorAxisLength');
 %%
 figure(14)
-scatter(Orientation,Circularity,'.');
+scatter(perimeters,FilledAreas,'.');
 hold on;
-scatter(TwosOrientation,TwosCircularity,'.');
+scatter(TwosPerimeters,TwosFilledAreas,'.');
 hold off;
 legend('zeros','twos');
-xlabel('Area')
-ylabel('MinorAxisLength');
+xlabel('Perimeter')
+ylabel('Circularity');
