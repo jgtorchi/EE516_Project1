@@ -43,11 +43,11 @@ hold off
 legend('zeros','ones');
 %%
 figure(12)
-histogram(perimeters)
+histogram(MinorAxis)
 hold on
-histogram(OnesPerimeters)
+histogram(TwosMinorAxis)
 hold off
-legend('zeros','ones');
+legend('zeros','twos');
 %%
 figure(13)
 scatter(perimeters,Circularity,'.');
@@ -71,4 +71,4 @@ scatter(TwosPerimeters,TwosFilledAreas,'.');
 hold off;
 legend('zeros','twos');
 xlabel('Perimeter')
-ylabel('Circularity');
+ylabel('Filled Area');
